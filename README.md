@@ -8,6 +8,7 @@ The main goal here is to make possible to link the chain to an interactive UI, k
 
 ## Further information
 - You must call either `next` or `failure` always (even in the last link callback in the chain!) inside each `callback` function, to keep the chain statuses always correct.
+- You can mutate `data` object, so you can pass data from a link to another.
 - You can use asynchronous functions inside each callback function.
 - You can `start` and `pause` the chain using the Chain functions, but, once you call `cancel` function, all subsequent links will be marked as `cancelled`.
 - All registered links starts with status `idle`.
