@@ -2,15 +2,17 @@
 
 A pure JavaScript and NodeJS implementation of ["Chain of Responsability Pattern"](https://refactoring.guru/design-patterns/chain-of-responsibility).
 
-In this implementation, you can `register` each link as an object, containing a `name` and a `callback` function, which receives three parameters: `data` (a mutated object, which will be shared sequentially between each chain link), `next` (function to call next chain link) and `failure` (function to mark current link status as `fail`). Inside each `callback` function, you can add promises and asynchronous tasks, just making sure to call `next` or `callback` after this processes.
+In this implementation, you can `register` each link as an object, containing a `name` and a `callback` function, which receives three parameters: `data` (a mutated object, which will be shared sequentially between each chain link), `next` (function to call next chain link) and `failure` (function to mark current link status as `fail`).
 
-The main goal here is to make possible to link the chain to an interactive UI, keeping a visual information of each step status, making possible to start, pause and cancel the chain using buttons.
+Inside each `callback` function, you can add promises and asynchronous tasks, just making sure to call `next` or `callback` after this processes.
+
+This implementation makes easy to link a chain of tasks to an interactive UI.
 
 ## Further information
-- You must call either `next` or `failure` always (even in the last link callback in the chain!) inside each `callback` function, to keep the chain statuses always correct.
-- You can mutate `data` object, so you can pass data from a link to another.
+- You must call either `next` or `failure` inside each `callback` function (even in the last registered function in the chain!), to keep the chain statuses always correct.
+- You can mutate `data` object, to pass data from a link to another.
 - You can use asynchronous functions inside each callback function.
-- You can `start` and `pause` the chain using the Chain functions, but, once you call `cancel` function, all subsequent links will be marked as `cancelled`.
+- You can `start` and `pause` the chain using the Chain functions, but once you call `cancel` function, all subsequent links will be marked as `cancelled`.
 - All registered links starts with status `idle`.
 
 ## Example
